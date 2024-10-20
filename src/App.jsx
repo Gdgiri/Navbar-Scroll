@@ -1,6 +1,7 @@
+// App.jsx
 import React, { useRef, useState } from "react";
 import "./index.css"; // Ensure this is included
-import Download from "./Download";
+import Navbar from "./Components/Navbar";
 
 const App = () => {
   const [activeSection, setActiveSection] = useState("home");
@@ -9,44 +10,24 @@ const App = () => {
   const servicesRef = useRef(null);
   const contactRef = useRef(null);
 
-  const handleScrollToSection = (sectionRef, sectionName) => {
+  const handleScrollToSection = (sectionName) => {
     setActiveSection(sectionName);
+    const sectionRef = {
+      home: homeRef,
+      about: aboutRef,
+      services: servicesRef,
+      contact: contactRef,
+    }[sectionName];
     sectionRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <div>
-      <nav>
-        <ul>
-          <Download />
-          <li
-            onClick={() => handleScrollToSection(homeRef, "home")}
-            className={`text-center ${
-              activeSection === "home" ? "active" : ""
-            }`}
-          >
-            Home
-          </li>
-          <li
-            onClick={() => handleScrollToSection(aboutRef, "about")}
-            className={activeSection === "about" ? "active" : ""}
-          >
-            About
-          </li>
-          <li
-            onClick={() => handleScrollToSection(servicesRef, "services")}
-            className={activeSection === "services" ? "active" : ""}
-          >
-            Services
-          </li>
-          <li
-            onClick={() => handleScrollToSection(contactRef, "contact")}
-            className={activeSection === "contact" ? "active" : ""}
-          >
-            Contact
-          </li>
-        </ul>
-      </nav>
+      <Navbar
+        activeSection={activeSection}
+        setActiveSection={setActiveSection}
+        handleScrollToSection={handleScrollToSection}
+      />
 
       <div className="content">
         <section ref={homeRef} id="home" className="center-content">
