@@ -5,7 +5,7 @@ const Download = () => {
     // Trigger a download programmatically
     const link = document.createElement("a");
     link.href = "mern-syllabus.pdf"; // The path to your PDF file in the public folder
-    link.download = "My_Resume.pdf"; // The filename for the downloaded file
+    link.download = "MERN-stack-syllabus.pdf"; // The filename for the downloaded file
     link.click();
   };
 

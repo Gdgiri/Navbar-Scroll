@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./index.css"; // Ensure this is included
+import Download from "./Download";
 
 const App = () => {
   const [activeSection, setActiveSection] = useState("home");
@@ -17,6 +18,7 @@ const App = () => {
     <div>
       <nav>
         <ul>
+          <Download />
           <li
             onClick={() => handleScrollToSection(homeRef, "home")}
             className={`text-center ${
